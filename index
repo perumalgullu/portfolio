@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>S. Perumal | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of S. Perumal, MSc Computer Science student and web developer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: rgba(15, 23, 42, 0.7);
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.15);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card-radius: 18px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Layout */
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), transparent);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .logo-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #a5b4fc, #4f46e5);
+      box-shadow: 0 0 12px rgba(129, 140, 248, 0.9);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #a855f7, #6366f1, #22d3ee);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f9fafb;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.8);
+      cursor: pointer;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 3.5rem 0 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      margin-bottom: 0.7rem;
+      color: var(--muted);
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 4vw, 2.7rem);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(120deg, #a5b4fc, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.85rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed, #22d3ee);
+      color: #f9fafb;
+      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.6);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.4);
+      color: #e5e7eb;
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-meta-badge {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    /* Hero Right */
+
+    .hero-right {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      padding: 1.3rem 1.4rem 1.2rem;
+      border-radius: 22px;
+      background: radial-gradient(circle at top left, rgba(59,130,246,0.18), rgba(15,23,42,0.95));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: -40%;
+      border-radius: 40%;
+      border: 1px dashed rgba(148, 163, 184, 0.25);
+      transform: rotate(-15deg);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-role {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.8rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .hero-stat-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+    }
+
+    .hero-stat-value {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    /* Sections */
+
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-tagline {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-soft);
+      backdrop-filter: blur(18px);
+      border-radius: var(--card-radius);
+      padding: 1.1rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.45rem;
+    }
+
+    .card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .edu-item {
+      margin-bottom: 0.9rem;
+    }
+
+    .edu-degree {
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
+
+    .edu-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* Skills */
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .chip {
+      font-size: 0.8rem;
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(129, 140, 248, 0.4);
+      color: #e5e7eb;
+    }
+
+    .skills-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    /* Projects */
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-tech {
+      font-size: 0.75rem;
+      color: #a5b4fc;
+      margin-bottom: 0.45rem;
+    }
+
+    .project-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Contact */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.3rem;
+    }
+
+    .contact-line {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-highlight {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .field-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .field-input,
+    .field-textarea {
+      width: 100%;
+      padding: 0.55rem 0.6rem;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .field-input:focus,
+    .field-textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .field-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .contact-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    footer {
+      padding: 1.4rem 0 1.8rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer span {
+      color: #a5b4fc;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 2.5rem;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .hero-card {
+        max-width: 360px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 56px;
+        right: 5%;
+        flex-direction: column;
+        background: rgba(15, 23, 42, 0.98);
+        padding: 0.7rem 0.9rem;
+        border-radius: 14px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-bottom: 2.3rem;
+      }
+
+      .about-grid,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        width: 92%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="logo">
+          <span class="logo-dot"></span>
+          <span>SP PORTFOLIO</span>
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="nav-toggle" id="navToggle">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Open to internships & fresher roles
+        </div>
+        <h1>
+          Hi, I’m <span>S. Perumal</span><br />
+          MSc Computer Science Student & Web Developer.
+        </h1>
+        <p class="hero-subtitle">
+          I’m a postgraduate student at Nazareth College of Arts & Science,
+          passionate about building clean, functional web applications and
+          strengthening my skills in programming and problem solving.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-primary">
+            View my projects
+          </a>
+          <a href="#contact" class="btn-ghost">
+            Contact me
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span>
+            <span class="hero-meta-badge"></span>
+            MSc CS &nbsp;•&nbsp; Nazareth College
+          </span>
+          <span> BCA &nbsp;•&nbsp; CGPA 7.5 </span>
+          <span> Based in Chennai </span>
+        </div>
+      </div>
+
+      <!-- Hero Card / Fake 3D Profile Card -->
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-orbit"></div>
+          <div class="hero-badge">
+            🧑‍💻 Profile Snapshot
+          </div>
+          <div class="hero-name">S. Perumal</div>
+          <div class="hero-role">MSc Computer Science • Nazareth College</div>
+
+          <div class="hero-pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">HTML • CSS • JS</span>
+            <span class="pill">MySQL • Firebase</span>
+            <span class="pill">VS Code • GitHub</span>
+          </div>
+
+          <p style="font-size:0.78rem; color:var(--muted); line-height:1.5;">
+            Passionate about writing clean code, learning new tools, and building
+            practical projects like an E-Waste Management website and a Courier
+            Management System.
+          </p>
+
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-label">Current</div>
+              <div class="hero-stat-value">MSc CS (PG)</div>
+            </div>
+            <div>
+              <div class="hero-stat-label">UG</div>
+              <div class="hero-stat-value">BCA • 7.5 CGPA</div>
+            </div>
+            <div>
+              <div class="hero-stat-label">Focus</div>
+              <div class="hero-stat-value">Web & Backend</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About</h2>
+        <p class="section-tagline">
+          A quick overview of my academic journey and interests.
+        </p>
+
+        <div class="about-grid">
+          <div class="card">
+            <h3 class="card-title">Who I am</h3>
+            <p>
+              I’m <strong>S. Perumal</strong>, a postgraduate
+              <strong>MSc Computer Science</strong> student at
+              Nazareth College of Arts & Science, Chennai. I enjoy turning
+              ideas into working applications using modern web technologies.
+              <br /><br />
+              I completed my <strong>Bachelor of Computer Applications (BCA)</strong>
+              at Vel Tech Ranga Sanku Arts and Science College, Chennai
+              with a <strong>7.5 CGPA</strong> (2024 pass-out).
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Education</h3>
+
+            <div class="edu-item">
+              <div class="edu-degree">M.Sc. Computer Science</div>
+              <div class="edu-meta">
+                Nazareth College of Arts & Science, Chennai<br />
+                2024 – Present
+              </div>
+            </div>
+
+            <div class="edu-item">
+              <div class="edu-degree">
+                Bachelor of Computer Applications (BCA)
+              </div>
+              <div class="edu-meta">
+                Vel Tech Ranga Sanku Arts and Science College, Chennai<br />
+                CGPA: 7.5 • Passed out: 2024
+              </div>
+            </div>
+
+            <div class="edu-item">
+              <div class="edu-degree">Interests</div>
+              <div class="edu-meta">
+                Web development, backend systems, problem solving,
+                and learning new tools & technologies.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-tagline">
+          Technologies and tools I’ve been working with.
+        </p>
+
+        <div class="skills-columns">
+          <div class="card">
+            <h3 class="card-title">Programming</h3>
+            <div class="chips">
+              <span class="chip">Python (Basics)</span>
+              <span class="chip">Java (Basics)</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Web Development</h3>
+            <div class="chips">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Database & Storage</h3>
+            <div class="chips">
+              <span class="chip">MySQL</span>
+              <span class="chip">Firebase</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Tools</h3>
+            <div class="chips">
+              <span class="chip">VS Code</span>
+              <span class="chip">GitHub</span>
+              <span class="chip">Eclipse</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-tagline">
+          A glimpse of the work I’ve done so far.
+        </p>
+
+        <div class="project-grid">
+
+          <div class="card project-card">
+  <div class="project-pill">📦 Academic Project</div>
+  <div class="project-title">E-Waste Management Website</div>
+  <div class="project-tech">HTML • CSS • JavaScript • Firebase</div>
+  <p class="project-desc">
+    Developed an e-waste management website specifically for
+    <strong>Nazareth College</strong>. The site allows users to submit
+    e-waste product details and stores information using Firebase Storage.
+    Simple UI, form validation, and basic data handling were implemented.
+    <br><br>
+    🔗 <a href="https://ewaste-bafdd.web.app/" target="_blank" style="color:#a5b4fc; text-decoration:underline;">
+      Visit Website
+    </a>
+  </p>
+</div>
+
+
+          <div class="card project-card">
+            <div class="project-pill">📦 UG Mini Project</div>
+            <div class="project-title">Courier Management System</div>
+            <div class="project-tech">
+              HTML • CSS • JavaScript • PHP (if used) • MySQL
+            </div>
+            <p class="project-desc">
+              Built a courier management system to maintain parcel and customer
+              records, delivery status, and basic tracking details. Designed
+              user-friendly interfaces and integrated backend database operations
+              using MySQL to handle data storage and retrieval.
+            </p>
+          </div>
+
+          <!-- You can add more project cards here later -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-tagline">
+          Let’s connect for opportunities, projects, or collaborations.
+        </p>
+
+        <div class="contact-layout">
+          <div class="card">
+            <h3 class="card-title">Reach out</h3>
+            <p class="contact-line">
+              I’m currently open to <strong>internships</strong> and
+              <strong>fresher roles</strong> in software / web development.
+            </p>
+            <p class="contact-line">
+              📧 <span class="contact-highlight">perumalgullu05@gmail.com</span>
+            </p>
+            <p class="contact-line">
+              📞 <span class="contact-highlight">+91 81245 94001</span>
+            </p>
+            <p class="contact-line">
+              📍 <span class="contact-highlight">Chennai, India</span>
+            </p>
+            <p class="contact-note">
+              You can also link this portfolio in your resume once it is hosted online.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Quick message (UI only)</h3>
+            <form class="contact-form" onsubmit="handleForm(event)">
+              <div>
+                <div class="field-label">Name</div>
+                <input type="text" class="field-input" placeholder="Your name" required />
+              </div>
+              <div>
+                <div class="field-label">Email</div>
+                <input type="email" class="field-input" placeholder="you@example.com" required />
+              </div>
+              <div>
+                <div class="field-label">Message</div>
+                <textarea class="field-textarea" placeholder="Type your message..." required></textarea>
+              </div>
+              <button type="submit" class="btn-primary" style="justify-content:center; width:100%;">
+                Send (Demo only)
+              </button>
+              <p class="contact-note">
+                This form is a front-end demo. For real messages, recruiters can email or call you directly.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> • Portfolio of <span>S. Perumal</span> • Built with HTML, CSS &amp; JavaScript
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    // Close mobile menu when clicking a link
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+      });
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Fake form submit
+    function handleForm(e) {
+      e.preventDefault();
+      alert("Thank you! This is a demo form. For real contact, please use email or phone shown on the left.");
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
